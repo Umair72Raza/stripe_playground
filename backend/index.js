@@ -7,6 +7,7 @@ const webhookRouter = require('./routes/webhook');
 const storeRouter = require('./routes/store');
 const productsRouter = require('./routes/products');
 const pricesRouter = require('./routes/prices');
+const paymentLinksRouter = require('./routes/paymentLinks');
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -25,6 +26,7 @@ app.use(healthRouter);
 app.use('/store', storeRouter);
 app.use('/products', productsRouter);
 app.use('/prices', pricesRouter);
+app.use('/payment-links', paymentLinksRouter);
 
 app.listen(PORT, () => {
   console.log(`Stripe Playground API running on http://localhost:${PORT}`);

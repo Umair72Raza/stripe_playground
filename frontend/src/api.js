@@ -27,6 +27,10 @@ export function getWebhookEvents() {
   return request('/webhook/events');
 }
 
+export function getWebhookStatus() {
+  return request('/webhook/status');
+}
+
 export function getStoredIds() {
   return request('/store/ids');
 }
@@ -58,4 +62,15 @@ export function createPrice({ product, unit_amount, currency, recurring }) {
 
 export function listPrices() {
   return request('/prices');
+}
+
+export function createPaymentLink({ price, quantity }) {
+  return request('/payment-links', {
+    method: 'POST',
+    body: JSON.stringify({ price, quantity }),
+  });
+}
+
+export function listPaymentLinks() {
+  return request('/payment-links');
 }

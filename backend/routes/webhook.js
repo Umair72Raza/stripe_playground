@@ -1,8 +1,12 @@
 const express = require('express');
 const stripe = require('../lib/stripe');
-const { addWebhookEvent, getWebhookEvents } = require('../store');
+const { addWebhookEvent, getWebhookEvents, getWebhookMeta, recordWebhookError } = require('../store');
 
 const router = express.Router();
+
+router.get('/status', (req, res) => {
+  res.json(getWebhookMeta());
+});
 
 router.post('/', express.raw({ type: 'application/json' }), (req, res) => {
   const signature = req.headers['stripe-signature'];
@@ -18,10 +22,11 @@ router.post('/', express.raw({ type: 'application/json' }), (req, res) => {
     event = stripe.webhooks.constructEvent(req.body, signature, webhookSecret);
   } catch (err) {
     console.error('Webhook signature verification failed:', err.message);
+    recordWebhookError(err.message);
     return res.status(400).send(`Webhook Error: ${err.message}`);
   }
 
-  console.log(`Webhook received: ${event.type}`);
+  console.log(`Webhook received: ${event.type} (${event.id})`);
 
   const object = event.data.object;
 
@@ -37,6 +42,8 @@ router.post('/', express.raw({ type: 'application/json' }), (req, res) => {
         status: object?.status,
         amount: object?.amount,
         customer: object?.customer,
+        customer_email: object?.customer_email || object?.customer_details?.email,
+        payment_link: object?.payment_link,
       },
     },
   });

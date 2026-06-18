@@ -5,6 +5,7 @@ import { phases } from './config';
 import { getStoredIds } from './api';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
+import PaymentLinksPage from './pages/PaymentLinksPage';
 import WebhooksPage from './pages/WebhooksPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import './App.css';
@@ -39,6 +40,8 @@ function AppContent() {
         return <HomePage />;
       case 'products':
         return <ProductsPage />;
+      case 'payment-links':
+        return <PaymentLinksPage />;
       case 'webhooks':
         return <WebhooksPage />;
       default:

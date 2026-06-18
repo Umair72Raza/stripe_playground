@@ -3,7 +3,7 @@ export const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:5000';
 export const phases = [
   { id: 'home', label: 'Home', phase: 0, enabled: true },
   { id: 'products', label: 'Products & Prices', phase: 1, enabled: true },
-  { id: 'payment-links', label: 'Payment Links', phase: 2, enabled: false },
+  { id: 'payment-links', label: 'Payment Links', phase: 2, enabled: true },
   { id: 'checkout', label: 'Checkout Sessions', phase: 3, enabled: false },
   { id: 'webhooks', label: 'Webhook Logs', phase: 4, enabled: true },
   { id: 'customers', label: 'Customers', phase: 5, enabled: false },
