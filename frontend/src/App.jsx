@@ -6,6 +6,7 @@ import { getStoredIds } from './api';
 import HomePage from './pages/HomePage';
 import ProductsPage from './pages/ProductsPage';
 import PaymentLinksPage from './pages/PaymentLinksPage';
+import CheckoutPage from './pages/CheckoutPage';
 import WebhooksPage from './pages/WebhooksPage';
 import PlaceholderPage from './pages/PlaceholderPage';
 import './App.css';
@@ -23,7 +24,11 @@ const placeholderCopy = {
 };
 
 function AppContent() {
-  const [activeId, setActiveId] = useState('home');
+  const [activeId, setActiveId] = useState(() => {
+    const params = new URLSearchParams(window.location.search);
+    if (params.get('checkout')) return 'checkout';
+    return 'home';
+  });
   const { lastResponse, ids, setIds } = usePlayground();
 
   useEffect(() => {
@@ -42,6 +47,8 @@ function AppContent() {
         return <ProductsPage />;
       case 'payment-links':
         return <PaymentLinksPage />;
+      case 'checkout':
+        return <CheckoutPage />;
       case 'webhooks':
         return <WebhooksPage />;
       default:

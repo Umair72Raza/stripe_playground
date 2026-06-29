@@ -4,7 +4,7 @@ export const phases = [
   { id: 'home', label: 'Home', phase: 0, enabled: true },
   { id: 'products', label: 'Products & Prices', phase: 1, enabled: true },
   { id: 'payment-links', label: 'Payment Links', phase: 2, enabled: true },
-  { id: 'checkout', label: 'Checkout Sessions', phase: 3, enabled: false },
+  { id: 'checkout', label: 'Checkout Sessions', phase: 3, enabled: true },
   { id: 'webhooks', label: 'Webhook Logs', phase: 4, enabled: true },
   { id: 'customers', label: 'Customers', phase: 5, enabled: false },
   { id: 'subscriptions', label: 'Subscriptions', phase: 6, enabled: false },

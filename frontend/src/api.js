@@ -74,3 +74,14 @@ export function createPaymentLink({ price, quantity }) {
 export function listPaymentLinks() {
   return request('/payment-links');
 }
+
+export function createCheckoutSession({ price, quantity, client_reference_id, metadata }) {
+  return request('/checkout/sessions', {
+    method: 'POST',
+    body: JSON.stringify({ price, quantity, client_reference_id, metadata }),
+  });
+}
+
+export function getCheckoutSession(sessionId) {
+  return request(`/checkout/sessions/${sessionId}`);
+}
