@@ -2,7 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 const MAX_EVENTS = 50;
-const DATA_DIR = path.join(__dirname, 'data');
+// Outside backend/ so nodemon file-watcher does not restart on every webhook save
+const DATA_DIR = path.join(__dirname, '..', 'data');
 const EVENTS_FILE = path.join(DATA_DIR, 'webhook-events.json');
 
 let webhookEvents = [];

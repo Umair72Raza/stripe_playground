@@ -1,0 +1,5 @@
+{
+  "watch": ["index.js", "routes", "lib", "store.js"],
+  "ignore": ["data", "data/**", "../data", "../data/**", "node_modules/**"],
+  "ext": "js"
+}

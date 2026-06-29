@@ -30,7 +30,7 @@ router.post('/', express.raw({ type: 'application/json' }), (req, res) => {
 
   const object = event.data.object;
 
-  addWebhookEvent({
+  const storedEvent = {
     id: event.id,
     type: event.type,
     created: event.created,
@@ -46,9 +46,11 @@ router.post('/', express.raw({ type: 'application/json' }), (req, res) => {
         payment_link: object?.payment_link,
       },
     },
-  });
+  };
 
   res.json({ received: true });
+
+  setImmediate(() => addWebhookEvent(storedEvent));
 });
 
 router.get('/events', (req, res) => {

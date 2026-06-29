@@ -37,6 +37,7 @@ router.post('/sessions', async (req, res) => {
     });
 
     res.json(session);
+
   } catch (err) {
     res.status(400).json({ error: err.message });
   }

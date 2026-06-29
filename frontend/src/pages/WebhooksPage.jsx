@@ -92,6 +92,10 @@ export default function WebhooksPage() {
             Send a test event from Dashboard → Webhooks → Send test webhook — fastest way to
             verify wiring
           </li>
+          <li>
+            502 errors during checkout: nodemon must ignore <code>backend/data/</code> — saving
+            webhook events was restarting the server mid-delivery
+          </li>
         </ul>
       </div>
 
